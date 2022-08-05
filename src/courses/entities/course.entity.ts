@@ -1,9 +1,16 @@
-export default class Course {
-    // id: number;
-    // name: string;
-    // description: string;
-    // tags: string[];
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-    constructor( readonly id: number, readonly name: string, readonly description: string, readonly tags: string[]){
-    }
+@Entity('courses')
+export default class Course {
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column({length: 120})
+    name: string;
+
+    @Column('text')
+    description: string;
+
+    @Column('json', {nullable: true})
+    tags: string[];
 }

@@ -5,11 +5,11 @@ import { UpdateCourseDto } from './dto/update-course.dto';
 
 @Controller('courses')
 export class CoursesController {
-    constructor(private readonly coursesSevice: CoursesService) {}
+    constructor(private readonly coursesService: CoursesService) {}
 
     @Get()
     findAll() {
-        return this.coursesSevice.findAll();
+        return this.coursesService.findAll();
     }
 
     // @Get(':id')
@@ -20,22 +20,22 @@ export class CoursesController {
     // } access all params without destructuring
 
     @Get(':id')
-    findOne(@Param('id') id:number) {
-        return this.coursesSevice.findOne(id);
+    findOne(@Param('id') id: string) {
+      return this.coursesService.findOne(Number(id));
     }
 
     @Post('create')
     create(@Body() createCourseDto: CreateCourseDto) {
-        return this.coursesSevice.create(createCourseDto);
+        return this.coursesService.create(createCourseDto);
     }
 
     @Patch(':id')
-    update(@Param('id') id: number, @Body() updateCourseDto: UpdateCourseDto) {
-        return this.coursesSevice.update(id, updateCourseDto);
+    update(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto) {
+        return this.coursesService.update(id, updateCourseDto);
     }
 
     @Delete(':id')
-    remove(@Param('id') id:number) {
-        return this.coursesSevice.remove(id);
-    }
+    remove(@Param('id') id:string) {
+        return this.coursesService.remove(Number(id));
+    } 
 }
