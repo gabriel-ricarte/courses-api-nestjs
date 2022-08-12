@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsString } from "class-validator";
+import Tag from "../entities/tag.entity";
 
 export class CreateCourseDto {
     @IsString()
@@ -11,5 +12,5 @@ export class CreateCourseDto {
 
     @IsString({each: true})
     @IsNotEmpty({each: true})
-    readonly tags: string[];
+    readonly tags: Tag[];
 }
